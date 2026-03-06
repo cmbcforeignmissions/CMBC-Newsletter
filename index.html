@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CMBC Foreign Missions — March 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700;900&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --burg:#7B1C2C; --burg-dk:#4e1019; --burg-lt:#8f2235;
+  --gold:#C6A030; --gold-lt:#fdf5dc;
+  --gray:#f5f3f0; --gray-mid:#e8e3db; --gray-dk:#c8bfb0;
+  --cream:#fdf9f2; --warm:#f0ebe1;
+  --text:#1c1c1c; --mid:#4a3f3f; --lite:#8a7a7a; --rule:#d9ccb8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lato',Arial,sans-serif;background:#b0a898;color:var(--text);font-size:14px;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;}
+.page{max-width:760px;margin:20px auto;background:#fff;box-shadow:0 4px 48px rgba(0,0,0,.28);}
+.page+.page{margin-top:28px;}
+
+/* ── UTILITIES ── */
+.sec-rule{display:flex;align-items:center;margin-bottom:11px;}
+.sec-lbl{font-family:'Oswald',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#fff;background:var(--burg);padding:4px 11px;margin-right:10px;white-space:nowrap;flex-shrink:0;}
+.sec-line{flex:1;height:1px;background:var(--rule);}
+.col-rule{width:1px;background:var(--rule);flex-shrink:0;}
+.pad{padding:18px 28px 0;}
+
+/* ── NAMEPLATE ── */
+.nameplate{background:var(--burg);}
+.np-stripe{background:var(--burg-dk);padding:6px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--gold);}
+.np-stripe-left{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.5);}
+.np-give-btn{background:var(--gold);color:var(--burg-dk);font-family:'Oswald',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;}
+.np-body{padding:11px 28px 10px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.np-left{display:flex;align-items:center;gap:12px;}
+.np-cross{font-size:34px;color:var(--gold);opacity:.7;line-height:1;}
+.np-titles .church{font-family:'Oswald',sans-serif;font-size:9.5px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1px;}
+.np-titles .ministry{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:#fff;line-height:.93;letter-spacing:-1px;}
+.np-right{text-align:right;}
+.np-right .issue{font-family:'Oswald',sans-serif;font-size:9px;color:rgba(255,255,255,.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.np-right .verse{font-family:'Playfair Display',serif;font-style:italic;font-size:11px;color:rgba(255,255,255,.55);max-width:200px;line-height:1.4;}
+.np-gold-bar{height:3px;background:linear-gradient(90deg,var(--burg),var(--gold) 50%,var(--burg));}
+
+/* ── TICKER — guaranteed single line ── */
+.ticker{background:var(--gold);height:30px;display:flex;align-items:stretch;overflow:hidden;}
+.t-lbl{font-family:'Oswald',sans-serif;font-size:8.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--burg-dk);padding:0 12px;border-right:2px solid rgba(78,16,25,.3);display:flex;align-items:center;flex-shrink:0;white-space:nowrap;}
+.ticker-items{display:flex;align-items:center;overflow:hidden;}
+.t-item{font-family:'Oswald',sans-serif;font-size:9.5px;font-weight:600;color:var(--burg-dk);padding:0 9px;border-right:1px solid rgba(78,16,25,.22);white-space:nowrap;flex-shrink:0;display:flex;align-items:center;}
+.t-item:last-child{border:none;}
+
+/* ── HERO — tall enough for all 6 TOC items ── */
+.hero{display:grid;grid-template-columns:1fr 210px;height:255px;overflow:hidden;}
+.hero-img{width:100%;height:255px;object-fit:cover;object-position:center 30%;}
+.hero-toc{background:var(--burg-dk);padding:10px 12px;overflow:hidden;}
+.toc-head{font-family:'Oswald',sans-serif;font-size:8.5px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(198,160,48,.3);padding-bottom:4px;margin-bottom:7px;}
+.toc-item{display:flex;gap:6px;margin-bottom:4px;align-items:flex-start;}
+.toc-n{font-family:'Oswald',sans-serif;font-size:13px;font-weight:700;color:var(--gold);line-height:1;width:13px;flex-shrink:0;}
+.toc-t{font-size:9.5px;color:rgba(255,255,255,.75);line-height:1.25;}
+.toc-t strong{display:block;font-size:10px;color:#fff;font-weight:700;}
+
+/* ── MISSION BAND ── */
+.mission-band{background:var(--warm);padding:10px 28px;display:grid;grid-template-columns:1fr 1px 1fr;gap:0 18px;border-top:3px solid var(--gold);border-bottom:1px solid var(--rule);}
+.mb-head{font-family:'Oswald',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--burg);margin-bottom:3px;}
+.mission-band p{font-size:11.5px;color:var(--mid);line-height:1.5;font-style:italic;}
+
+/* ── LEAD — 2 col: article + Ramey right. Headline SIZE RESTORED ── */
+.lead{padding:16px 28px 0;}
+.lead-2col{display:grid;grid-template-columns:1fr 160px;gap:16px;}
+.lead-hed{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--burg-dk);line-height:1.1;margin-bottom:6px;}
+.lead-hed-gray{color:#7a7a7a;}
+.byline{font-family:'Oswald',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:3px 0;margin-bottom:8px;}
+.lead-deck{font-size:12px;font-style:italic;color:var(--mid);border-left:3px solid var(--gold);padding-left:9px;margin-bottom:8px;line-height:1.4;}
+.body-text p{font-size:12px;line-height:1.7;color:var(--text);margin-bottom:7px;text-align:justify;hyphens:auto;}
+.body-text p:first-child::first-letter{font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:var(--burg);float:left;line-height:.75;margin:5px 5px 0 0;}
+.ramey-col{display:flex;flex-direction:column;}
+.ramey-wrap{position:relative;overflow:hidden;flex-shrink:0;}
+.ramey-photo{width:100%;height:175px;object-fit:cover;object-position:center 5%;display:block;}
+.ramey-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(78,16,25,.93));padding:18px 9px 7px;}
+.ramey-name{font-family:'Oswald',sans-serif;font-size:11px;font-weight:700;color:#fff;line-height:1.1;}
+.ramey-role{font-size:8.5px;color:var(--gold);font-family:'Oswald',sans-serif;letter-spacing:.5px;margin-top:1px;}
+.ramey-pull{background:var(--burg-dk);padding:9px 10px;}
+.ramey-pull p{font-family:'Playfair Display',serif;font-size:10.5px;font-style:italic;color:rgba(255,255,255,.88);line-height:1.4;margin-bottom:4px;}
+.ramey-pull cite{font-family:'Oswald',sans-serif;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);}
+.ramey-connect{background:var(--burg);padding:9px 10px;border-top:1px solid rgba(198,160,48,.4);}
+.ramey-connect p{font-size:9.5px;color:rgba(255,255,255,.8);line-height:1.4;margin-bottom:6px;}
+.ramey-connect a{display:block;background:var(--gold);color:var(--burg-dk);font-family:'Oswald',sans-serif;font-size:8.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:6px 8px;text-align:center;}
+
+/* ── VIDEO EMBED SECTION ── */
+.video-section{background:var(--gray);padding:14px 28px;border-top:3px solid var(--gold);}
+.video-label{font-family:'Oswald',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--burg);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.video-label::after{content:'';flex:1;height:1px;background:var(--rule);}
+.video-2col{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:center;}
+.video-frame{position:relative;width:100%;padding-bottom:56.25%;background:#1a1a1a;overflow:hidden;}
+.video-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+.video-note{font-size:11.5px;color:var(--mid);line-height:1.6;}
+.video-note strong{color:var(--burg-dk);display:block;font-family:'Playfair Display',serif;font-size:14px;margin-bottom:5px;}
+.video-note a{color:var(--burg);font-weight:700;text-decoration:underline;}
+
+/* ── SINCE 2021 ── */
+.ns-band{background:var(--burg);padding:12px 28px 14px;margin-top:14px;}
+.ns-head{font-family:'Oswald',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.5);border-bottom:1px solid rgba(198,160,48,.25);padding-bottom:5px;margin-bottom:9px;text-align:center;}
+.ns-row{display:grid;grid-template-columns:repeat(6,1fr);gap:2px;}
+.ns-card{background:rgba(0,0,0,.2);border:1px solid rgba(198,160,48,.18);padding:9px 5px;text-align:center;}
+.ns-big{font-family:'Oswald',sans-serif;font-size:17px;font-weight:700;color:var(--gold);line-height:1;display:block;}
+.ns-lbl{font-family:'Oswald',sans-serif;font-size:7px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.6);display:block;margin-top:2px;line-height:1.3;}
+
+/* ── STAT GRIDS ── */
+.stat-section{padding:14px 28px 0;}
+.sixbox{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+.sb{padding:14px 8px;text-align:center;}
+.sb.burg{background:var(--burg);} .sb.gold{background:var(--gold);}
+.sb-num{font-family:'Oswald',sans-serif;font-size:27px;font-weight:700;line-height:1;display:block;margin-bottom:4px;}
+.sb.burg .sb-num{color:var(--gold);} .sb.gold .sb-num{color:var(--burg-dk);}
+.sb-lbl{font-family:'Oswald',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;display:block;}
+.sb.burg .sb-lbl{color:rgba(255,255,255,.72);} .sb.gold .sb-lbl{color:rgba(78,16,25,.8);}
+
+/* ── GIVE BAR ── */
+.give-bar{background:var(--gold);padding:11px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.give-bar-txt{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;font-style:italic;color:var(--burg-dk);line-height:1.2;}
+.give-bar-txt strong{font-style:normal;}
+.give-btn{background:var(--burg);color:#fff;font-family:'Oswald',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:10px 20px;white-space:nowrap;flex-shrink:0;}
+
+/* ── PAGE TOPBAR ── */
+.pg-topbar{background:var(--burg);padding:6px 28px;display:flex;justify-content:space-between;align-items:center;}
+.pg-topbar span{font-family:'Oswald',sans-serif;font-size:8.5px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.pg-topbar .pg-t{color:var(--gold);font-weight:600;}
+
+/* ── FIELD REPORTS ── */
+.field-grid{display:grid;grid-template-columns:1fr 1px 1fr;gap:0 18px;}
+.country-tag{display:inline-block;font-family:'Oswald',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#fff;background:var(--burg);padding:3px 11px;margin-bottom:7px;}
+.cphoto{width:100%;height:130px;object-fit:cover;display:block;filter:brightness(1.08);}
+.pcap{font-size:9.5px;font-style:italic;color:var(--lite);text-align:center;margin:3px 0 6px;line-height:1.3;}
+.c-hed{font-family:'Playfair Display',serif;font-size:14.5px;font-weight:700;color:var(--burg-dk);margin-bottom:2px;line-height:1.2;}
+.c-sub{font-family:'Oswald',sans-serif;font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--lite);margin-bottom:6px;border-bottom:1px solid var(--rule);padding-bottom:4px;}
+.cbody p{font-size:11.5px;line-height:1.6;color:var(--text);margin-bottom:5px;text-align:justify;hyphens:auto;}
+.field-callout{float:right;width:118px;margin:0 0 6px 8px;background:var(--burg-dk);padding:8px;text-align:center;border-left:3px solid var(--gold);}
+.callout-big{font-family:'Oswald',sans-serif;font-size:19px;font-weight:700;color:var(--gold);line-height:1;display:block;}
+.callout-lbl{font-family:'Oswald',sans-serif;font-size:7.5px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.7);display:block;margin-top:3px;line-height:1.4;}
+.hl{list-style:none;padding:6px 9px;background:var(--warm);border-left:3px solid var(--gold);}
+.hl li{font-size:10.5px;line-height:1.5;color:var(--mid);padding:1.5px 0;}
+.hl li::before{content:"▸ ";color:var(--gold);font-size:8.5px;}
+.hl li strong{color:var(--burg-dk);}
+
+/* ── "IN THE FIELD" dual photo panel ── */
+.field-panel{display:grid;grid-template-columns:1fr 1fr;gap:0;position:relative;margin-top:14px;height:160px;overflow:hidden;}
+.field-panel img{width:100%;height:160px;object-fit:cover;filter:brightness(.85);}
+.field-panel-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(78,16,25,.88));padding:28px 16px 8px;display:flex;justify-content:space-between;align-items:flex-end;}
+.field-panel-txt{font-size:10px;font-style:italic;color:rgba(255,255,255,.85);line-height:1.4;max-width:80%;}
+.field-panel-badge{font-family:'Oswald',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);background:rgba(78,16,25,.7);padding:4px 8px;border:1px solid rgba(198,160,48,.5);white-space:nowrap;}
+
+/* ── WOW CARDS ── */
+.wow{background:var(--burg-dk);padding:14px 28px;}
+.wow-head{font-family:'Oswald',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.wow-head::before,.wow-head::after{content:'';flex:1;height:1px;background:rgba(198,160,48,.3);}
+.wow-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.wc{background:rgba(255,255,255,.07);padding:16px 8px 12px;text-align:center;border:1px solid rgba(198,160,48,.18);}
+.wc-emoji{font-size:30px;margin-bottom:8px;display:block;line-height:1;}
+.wc-big{font-family:'Oswald',sans-serif;font-size:28px;font-weight:700;color:var(--gold);line-height:1;display:block;margin-bottom:5px;}
+.wc-lbl{font-family:'Oswald',sans-serif;font-size:7.5px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.7);display:block;line-height:1.4;}
+.wc-sub{font-size:9px;color:rgba(255,255,255,.4);margin-top:3px;display:block;}
+
+/* ── FINANCIALS — gray background ── */
+.fin-wrap{background:var(--gray);padding:14px 28px 0;}
+.fin-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+.fc{background:#fff;border-top:3px solid var(--burg);display:flex;flex-direction:column;border:1px solid var(--gray-mid);border-top:3px solid var(--burg);}
+.fc-head{background:var(--burg);padding:6px 12px;font-family:'Oswald',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#fff;}
+.fc-body{padding:8px 12px;display:flex;flex-direction:column;justify-content:space-between;flex:1;}
+.fr{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px dotted var(--rule);padding:2.5px 0;font-size:10.5px;gap:4px;}
+.fi{color:var(--mid);line-height:1.25;flex:1;}
+.fm{font-family:'Oswald',sans-serif;font-size:11px;font-weight:700;color:var(--burg);white-space:nowrap;}
+.ft{display:flex;justify-content:space-between;border-top:2px solid var(--burg);margin-top:4px;padding-top:4px;font-family:'Oswald',sans-serif;font-size:11px;font-weight:700;color:var(--burg);}
+.fin-total{background:var(--gray);padding:7px 28px 14px;}
+.fin-total p{font-size:10.5px;font-style:italic;color:var(--lite);padding:6px 0 0;border-top:1px solid var(--gray-dk);}
+
+/* ── PHOTO ROW ── */
+.photo-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;padding:0 28px;}
+.photo-row img{width:100%;height:112px;object-fit:cover;display:block;filter:brightness(1.07);}
+.cap{font-size:9.5px;font-style:italic;color:var(--lite);text-align:center;margin-top:2px;line-height:1.3;}
+
+/* ── PAGE 3 PURPOSE ── */
+.purpose-section{background:#fff;padding:16px 28px 0;}
+.pur-2col{display:grid;grid-template-columns:1fr 185px;gap:16px;align-items:start;}
+.pur-intro{font-size:11px;color:var(--mid);line-height:1.6;margin-bottom:9px;font-style:italic;}
+.pur-list{list-style:none;counter-reset:pur;}
+.pur-list li{counter-increment:pur;display:flex;gap:8px;margin-bottom:8px;align-items:flex-start;}
+.pur-list li::before{content:counter(pur);font-family:'Oswald',sans-serif;font-size:14px;font-weight:700;color:var(--gold);background:var(--burg);width:23px;height:23px;display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1;}
+.pur-title{font-family:'Playfair Display',serif;font-size:12px;font-weight:700;color:var(--burg-dk);margin-bottom:1px;}
+.pur-body{font-size:10.5px;color:var(--mid);line-height:1.45;}
+.pur-ref{font-size:9px;color:var(--gold);font-style:italic;margin-top:1px;}
+.vsidebar{display:flex;flex-direction:column;gap:0;}
+.vbox{background:var(--burg);padding:10px 11px;border-bottom:2px solid var(--gold);}
+.vbox-head{font-family:'Oswald',sans-serif;font-size:8.5px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.vbox p{font-size:10.5px;color:rgba(255,255,255,.82);line-height:1.5;}
+.vbox ul{list-style:none;padding:0;margin-top:4px;}
+.vbox ul li{font-size:10px;color:rgba(255,255,255,.7);padding:2px 0;border-bottom:1px solid rgba(255,255,255,.08);}
+.vbox ul li::before{content:"✦ ";color:var(--gold);font-size:8px;}
+.vbox ul li:last-child{border:none;}
+.praybox{background:var(--gold-lt);padding:10px 11px;}
+.praybox-head{font-family:'Oswald',sans-serif;font-size:8.5px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--burg);margin-bottom:4px;}
+.pray-list{list-style:none;padding:0;}
+.pray-list li{font-size:10.5px;color:var(--mid);padding:2px 0;}
+.pray-list li::before{content:"🙏 ";font-size:10px;}
+
+/* ── HOW TO PARTICIPATE — gray bg, Image 5 style ── */
+.participate-band{background:var(--gray);padding:14px 28px 16px;border-top:1px solid var(--gray-dk);}
+.participate-hdr{font-family:'Oswald',sans-serif;font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#fff;background:var(--burg-dk);padding:5px 14px;display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;border-left:3px solid var(--gold);}
+.p3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+.p3item-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--burg-dk);margin-bottom:6px;display:flex;align-items:center;gap:7px;}
+.p3item p{font-size:11px;color:var(--mid);line-height:1.6;text-align:justify;hyphens:auto;}
+
+/* ── WHAT IS FMEM — cream/warm bg ── */
+.fmem{background:var(--warm);padding:14px 28px;border-top:1px solid var(--rule);}
+.fmem-hed{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--burg-dk);margin-bottom:8px;}
+.fmem-list{list-style:none;padding:0;}
+.fmem-list li{font-size:11.5px;color:var(--text);padding:5px 0;border-bottom:1px solid var(--rule);display:flex;gap:9px;align-items:baseline;}
+.fmem-list li:last-child{border:none;}
+.fmem-list li::before{content:"✦";color:var(--gold);font-size:9px;flex-shrink:0;}
+.fmem-list li strong{color:var(--burg-dk);}
+
+/* ── BIG GIVE CTA — burg gradient ── */
+.give-cta{background:linear-gradient(135deg,var(--burg-dk) 0%,var(--burg-lt) 100%);padding:22px 28px;text-align:center;position:relative;overflow:hidden;}
+.give-cta::before{content:'✦';font-size:120px;color:rgba(198,160,48,.04);position:absolute;top:-20px;left:-8px;pointer-events:none;}
+.give-cta::after{content:'✦';font-size:120px;color:rgba(198,160,48,.04);position:absolute;bottom:-30px;right:-8px;pointer-events:none;}
+.cta-eye{font-family:'Oswald',sans-serif;font-size:10px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.cta-hed{font-family:'Playfair Display',serif;font-size:27px;font-weight:900;color:#fff;line-height:1.05;margin-bottom:4px;}
+.cta-hed em{color:var(--gold);font-style:italic;}
+.cta-sub{font-size:12px;color:rgba(255,255,255,.75);max-width:480px;margin:0 auto 12px;line-height:1.55;}
+.cta-single-row{background:rgba(198,160,48,.12);border:1px solid rgba(198,160,48,.3);padding:11px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:12px;}
+.cta-row-txt{font-family:'Playfair Display',serif;font-size:14px;font-style:italic;color:#fff;text-align:left;}
+.cta-row-txt strong{color:var(--gold);font-style:normal;}
+.cta-row-btn{background:var(--gold);color:var(--burg-dk);font-family:'Oswald',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:10px 16px;white-space:nowrap;flex-shrink:0;}
+.amt-row{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;max-width:510px;margin:0 auto 12px;}
+.amt{background:rgba(255,255,255,.08);border:1px solid rgba(198,160,48,.35);color:var(--gold);font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;padding:8px 6px;text-align:center;}
+.amt span{display:block;font-size:7.5px;color:rgba(255,255,255,.42);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+.cta-note{font-size:9.5px;color:rgba(255,255,255,.35);margin-top:8px;font-style:italic;}
+
+/* ── SIGNUP — dark burg ── */
+.signup{background:var(--burg-dk);padding:16px 28px;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center;}
+.su-text h4{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:6px;}
+.su-text p{font-size:11.5px;color:rgba(255,255,255,.6);line-height:1.5;}
+.su-form{display:flex;flex-direction:column;gap:6px;}
+.su-form input{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-family:'Lato',sans-serif;font-size:12px;padding:8px 11px;outline:none;}
+.su-form input::placeholder{color:rgba(255,255,255,.35);}
+.su-form button{background:var(--gold);color:var(--burg-dk);font-family:'Oswald',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:9px;border:none;cursor:pointer;width:100%;}
+.su-priv{font-size:9.5px;color:rgba(255,255,255,.28);text-align:center;margin-top:3px;}
+
+/* ── CONTACT — gray bg ── */
+.contact-row{background:var(--gray);padding:12px 28px;display:grid;grid-template-columns:1fr 1px 1fr;gap:0 18px;border-top:1px solid var(--gray-dk);}
+.cc-name{font-family:'Oswald',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;color:var(--burg);margin-bottom:1px;}
+.cc-role{font-family:'Oswald',sans-serif;font-size:8.5px;color:var(--lite);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;}
+.cc-detail{font-size:11px;color:var(--mid);margin-bottom:2px;display:flex;align-items:center;gap:5px;}
+.cc-detail a{color:var(--burg);}
+.cc-btn{display:inline-block;margin-top:6px;background:var(--burg);color:#fff;font-family:'Oswald',sans-serif;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;}
+
+/* ── FOOTER — single line, white-space nowrap ── */
+.footer{background:var(--burg);padding:9px 22px;display:flex;align-items:center;justify-content:space-between;white-space:nowrap;overflow:hidden;gap:8px;}
+.f-church{font-family:'Playfair Display',serif;font-size:10.5px;font-weight:700;color:#fff;flex-shrink:0;}
+.f-info{font-size:9px;color:rgba(255,255,255,.4);margin-right:auto;flex-shrink:1;}
+.f-links{display:flex;gap:12px;flex-shrink:0;}
+.f-links a{font-family:'Oswald',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gold);}
+.f-right{font-size:8.5px;color:rgba(255,255,255,.28);flex-shrink:0;}
+
+/* ── SIGNUP EXPANDED ── */
+.signup-wrap{background:var(--burg-dk);padding:18px 28px;}
+.signup-header{margin-bottom:14px;}
+.signup-header h4{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:5px;}
+.signup-header p{font-size:12px;color:rgba(255,255,255,.6);line-height:1.5;}
+.signup-form-area{}
+.su-row2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;}
+.su-row2 input{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-family:'Lato',sans-serif;font-size:12px;padding:8px 11px;outline:none;}
+.su-row2 input::placeholder{color:rgba(255,255,255,.35);}
+.su-row2 input:focus{border-color:var(--gold);}
+.su-checks{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px;}
+.su-check{display:flex;align-items:center;gap:6px;cursor:pointer;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);padding:7px 9px;}
+.su-check input[type=checkbox]{accent-color:var(--gold);width:13px;height:13px;flex-shrink:0;}
+.su-check span{font-size:10.5px;color:rgba(255,255,255,.8);line-height:1.2;}
+.su-check:has(input:checked){background:rgba(198,160,48,.15);border-color:rgba(198,160,48,.5);}
+.su-bottom button{background:var(--gold);color:var(--burg-dk);font-family:'Oswald',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:10px 24px;border:none;cursor:pointer;width:100%;margin-bottom:6px;}
+.su-priv{font-size:9.5px;color:rgba(255,255,255,.28);text-align:center;}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ PAGE 1 ══════════════════ -->
+<div class="page">
+
+  <div class="nameplate">
+    <div class="np-stripe">
+      <span class="np-stripe-left">Community Missionary Baptist Church &nbsp;·&nbsp; DeSoto &amp; Cedar Hill, TX</span>
+      <a href="https://www.communitymbc.org/give" class="np-give-btn">✦ &nbsp;Give Online Now</a>
+    </div>
+    <div class="np-body">
+      <div class="np-left">
+        <span class="np-cross">✞</span>
+        <div class="np-titles">
+          <div class="church">Community Missionary Baptist Church</div>
+          <div class="ministry">FOREIGN<br>MISSIONS</div>
+        </div>
+      </div>
+      <div class="np-right">
+        <div class="issue">Monthly Newsletter &nbsp;·&nbsp; March 2026</div>
+        <div class="verse">"Go therefore and make disciples of all nations…" — Matthew 28:19</div>
+      </div>
+    </div>
+    <div class="np-gold-bar"></div>
+  </div>
+
+  <div class="ticker">
+    <span class="t-lbl">THIS MONTH</span>
+    <div class="ticker-items">
+      <span class="t-item">India: 285 New Members Q1 2026</span>
+      <span class="t-item">Kenya: 600-Seat Sanctuary Under Construction</span>
+      <span class="t-item">1,828+ Total Baptisms</span>
+      <span class="t-item">900+ Pairs of Shoes Given</span>
+    </div>
+  </div>
+
+  <div class="hero">
+    <img class="hero-img" src="https://drive.google.com/thumbnail?id=1Nsa6w7n7Oq5FmOPLMzhLFuaHVQ5JyFGg&sz=w1200" alt="Packed tent worship gathering — India" />
+    <div class="hero-toc">
+      <div class="toc-head">IN THIS ISSUE</div>
+      <div class="toc-item"><span class="toc-n">1</span><div class="toc-t"><strong>Director's Message</strong>From two cities to two continents</div></div>
+      <div class="toc-item"><span class="toc-n">1</span><div class="toc-t"><strong>By The Numbers</strong>Impact since 2021</div></div>
+      <div class="toc-item"><span class="toc-n">2</span><div class="toc-t"><strong>Field Reports</strong>India &amp; Kenya Q1 2026</div></div>
+      <div class="toc-item"><span class="toc-n">2</span><div class="toc-t"><strong>Your Giving at Work</strong>Where every dollar goes</div></div>
+      <div class="toc-item"><span class="toc-n">3</span><div class="toc-t"><strong>Our Purpose &amp; Vision</strong>Why we go to the nations</div></div>
+      <div class="toc-item"><span class="toc-n">3</span><div class="toc-t"><strong>Give Today</strong>Be a part of the movement</div></div>
+    </div>
+  </div>
+
+  <div class="mission-band">
+    <div>
+      <div class="mb-head">Our Mission</div>
+      <p>To glorify God by fulfilling the Great Commission in the spirit of the Great Commandment — through ministry partnerships in Kenya and India.</p>
+    </div>
+    <div class="col-rule"></div>
+    <div>
+      <div class="mb-head">Our Commitment</div>
+      <p>Integrating missions into our teaching, balancing financial support between local and global partnerships, and sending equipped ministers to the ends of the earth.</p>
+    </div>
+  </div>
+
+  <!-- DIRECTOR MESSAGE -->
+  <div class="lead">
+    <div class="sec-rule"><span class="sec-lbl">&nbsp;A Message from the Director&nbsp;</span><span class="sec-line"></span></div>
+    <div class="lead-2col">
+      <div>
+        <div class="lead-hed">From a Handful of Believers to a<br><span class="lead-hed-gray">Movement Across Two Continents</span></div>
+        <div class="byline">Rev. Dr. Sherwyn Ramey &nbsp;·&nbsp; Director, Foreign Missions &nbsp;·&nbsp; March 2026</div>
+        <div class="lead-deck">"What began in 2021 has become a movement of faith in action — and your faithfulness is the reason lives are being transformed."</div>
+        <div class="body-text">
+          <p>Dear CMBC Family, March is Foreign Mission Emphasis Month — a sacred season when we turn our hearts, prayers, and generosity toward the global work God has entrusted to us. In just five years, CMBC's foreign missions work has grown from two small fellowships into a movement spanning 27 churches and more than 2,500 members across India and Kenya.</p>
+          <p>Under the visionary leadership of our Senior Pastor, <strong>Rev. Oscar D. Epps</strong>, CMBC Foreign Missions continues to embody holistic ministry — evangelism, discipleship, humanitarian outreach, leadership training, and compassionate care. Sanctuaries have been built. Wells have been drilled. Children are being fed. Leaders are being raised up. And souls are being saved.</p>
+          <p>Read on for field reports, a transparent look at how your gifts are invested, and an invitation to be part of this extraordinary Kingdom movement. We are grateful for every prayer and every dollar.</p>
+        </div>
+      </div>
+      <div class="ramey-col">
+        <div class="ramey-wrap">
+          <img class="ramey-photo" src="https://drive.google.com/thumbnail?id=1DmODRG7RqBTkg7M6iU2NSuv6UQIdayZL&sz=w1200" alt="Rev. Dr. Sherwyn Ramey" />
+          <div class="ramey-overlay">
+            <div class="ramey-name">Rev. Dr. Sherwyn Ramey</div>
+            <div class="ramey-role">Director, Foreign Missions</div>
+          </div>
+        </div>
+        <div class="ramey-pull">
+          <p>"When the church moves with compassion, communities rise with hope."</p>
+          <cite>— Rev. Dr. Sherwyn Ramey</cite>
+        </div>
+        <div class="ramey-connect">
+          <p>Follow our journey — prayer requests, field updates, and impact stories sent directly to you.</p>
+          <a href="#signup-form" onclick="document.getElementById('signup-form').scrollIntoView({behavior:'smooth'}); document.getElementById('su-name').focus(); return false;">Join the Mission</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- VIDEO SECTION -->
+  <div class="video-section">
+    <div class="video-label">✦ &nbsp;Your Support at Work — See the Impact</div>
+    <div class="video-2col">
+      <div style="position:relative;width:100%;background:#000;border:2px solid var(--gold);">
+        <video
+          controls
+          preload="none"
+          poster=""
+          style="width:100%;display:block;"
+          src="https://www.dropbox.com/scl/fi/8z61nqhwit1k9fott7uo2/cmbc-india-kenya.mp4?rlkey=th4pfunemox794iry2r4e98n2&st=0i166jl4&raw=1">
+          Your browser does not support the video tag.
+          <a href="https://www.dropbox.com/scl/fi/8z61nqhwit1k9fott7uo2/cmbc-india-kenya.mp4?rlkey=th4pfunemox794iry2r4e98n2&st=0i166jl4&dl=0" target="_blank">Click here to watch the video</a>
+        </video>
+      </div>
+      <div class="video-note">
+        <strong>Learn More About Our Foreign Missions</strong>
+        See firsthand how your generosity is transforming lives in India and Kenya — from baptisms in the river to sanctuaries rising from the ground. This short field video tells the story of what God is doing through CMBC.
+        <br><br>
+        <a href="https://www.dropbox.com/scl/fi/8z61nqhwit1k9fott7uo2/cmbc-india-kenya.mp4?rlkey=th4pfunemox794iry2r4e98n2&st=0i166jl4&dl=0" target="_blank">▶ &nbsp;Watch the Full Video →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SINCE 2021 -->
+  <div class="ns-band">
+    <div class="ns-head">Since 2021 — Combined Impact</div>
+    <div class="ns-row">
+      <div class="ns-card"><span class="ns-big">27</span><span class="ns-lbl">Total Churches</span></div>
+      <div class="ns-card"><span class="ns-big">2,500+</span><span class="ns-lbl">Members</span></div>
+      <div class="ns-card"><span class="ns-big">1,828+</span><span class="ns-lbl">Baptisms</span></div>
+      <div class="ns-card"><span class="ns-big">170+</span><span class="ns-lbl">Ministers Trained</span></div>
+      <div class="ns-card"><span class="ns-big">250+</span><span class="ns-lbl">Children Fed Daily</span></div>
+      <div class="ns-card"><span class="ns-big">900+</span><span class="ns-lbl">Pairs of Shoes</span></div>
+    </div>
+  </div>
+
+  <!-- INDIA STATS -->
+  <div class="stat-section">
+    <div class="sec-rule"><span class="sec-lbl">&nbsp;India — By the Numbers&nbsp;</span><span class="sec-line"></span></div>
+    <div class="sixbox">
+      <div class="sb burg"><span class="sb-num">21</span><span class="sb-lbl">Churches</span></div>
+      <div class="sb burg"><span class="sb-num">2,000+</span><span class="sb-lbl">Members</span></div>
+      <div class="sb burg"><span class="sb-num">1,800+</span><span class="sb-lbl">Baptisms Total</span></div>
+      <div class="sb gold"><span class="sb-num">285</span><span class="sb-lbl">New Members Q1 2026</span></div>
+      <div class="sb gold"><span class="sb-num">250+</span><span class="sb-lbl">Children Fed Daily</span></div>
+      <div class="sb gold"><span class="sb-num">120+</span><span class="sb-lbl">Ministers Trained</span></div>
+    </div>
+  </div>
+
+  <!-- KENYA STATS -->
+  <div class="stat-section" style="padding-bottom:0;">
+    <div class="sec-rule"><span class="sec-lbl">&nbsp;Kenya — By the Numbers&nbsp;</span><span class="sec-line"></span></div>
+    <div class="sixbox">
+      <div class="sb gold"><span class="sb-num">6</span><span class="sb-lbl">Churches</span></div>
+      <div class="sb gold"><span class="sb-num">500+</span><span class="sb-lbl">Members</span></div>
+      <div class="sb gold"><span class="sb-num">38</span><span class="sb-lbl">New Members Q1</span></div>
+      <div class="sb burg"><span class="sb-num">28</span><span class="sb-lbl">Baptisms Q1 2026</span></div>
+      <div class="sb burg"><span class="sb-num">50+</span><span class="sb-lbl">Ministers Trained</span></div>
+      <div class="sb burg"><span class="sb-num">700+</span><span class="sb-lbl">Eyes on Kenya</span></div>
+    </div>
+  </div>
+
+  <div class="give-bar" style="margin-top:14px;">
+    <span class="give-bar-txt"><strong>Be a part of the movement.</strong> Your gift changes lives — today, and for eternity.</span>
+    <a href="https://www.communitymbc.org/give" class="give-btn">✦ &nbsp;Give Online Now</a>
+  </div>
+
+</div><!-- end page 1 -->
+
+
+<!-- ══════════════════ PAGE 2 ══════════════════ -->
+<div class="page">
+
+  <div class="pg-topbar">
+    <span>Foreign Missions Newsletter — March 2026</span>
+    <span class="pg-t">Field Reports &amp; Ministry Investment</span>
+    <span>communitymbc.org</span>
+  </div>
+
+  <div class="pad">
+    <div class="sec-rule"><span class="sec-lbl">&nbsp;Mission Field Reports — Q1 2026&nbsp;</span><span class="sec-line"></span></div>
+    <div class="field-grid">
+
+      <!-- INDIA field report -->
+      <div>
+        <span class="country-tag">India — Andhra Pradesh</span>
+        <img class="cphoto" src="https://drive.google.com/thumbnail?id=1JEjM05a4CXW3lq4Jx1byHLw7aTXK2kfU&sz=w1200" alt="Baptism ceremony — India" style="object-position:center 20%;" />
+        <p class="pcap">Baptism ceremony at the newly constructed pool — Andhra Pradesh, India.</p>
+        <div class="c-hed">21 Churches. 2,000+ Members. A Thriving Movement.</div>
+        <div class="c-sub">Est. 2021 &nbsp;·&nbsp; Led by Pastor Kumar Paul</div>
+        <div class="cbody">
+          <div class="field-callout">
+            <span class="callout-big">$1,000</span>
+            <span class="callout-lbl">Funded the<br>Baptism Pool</span>
+          </div>
+          <p>What began in a dilapidated structure has grown into <strong>21 churches and 2,000+ members</strong>. The main sanctuary seats 250 with a baptism pool now constructed. Over <strong>1,800 baptisms</strong> total — <strong>212 baptized</strong> in Q1 2026 alone. Through the EPPS School of Ministry, <strong>120+ ministers</strong> have been trained for sustained Kingdom growth.</p>
+          <p>Two bore wells provide clean water to <strong>150+ villagers daily</strong>. Food distribution feeds <strong>250+ children every day</strong>. A two-story facility is under construction for pastoral housing and street children. CMBC Cedar Hill has sent over <strong>900 pairs of shoes</strong> and <strong>500+ Bibles</strong> in local dialects.</p>
+        </div>
+        <ul class="hl">
+          <li><strong>285</strong> New members Q1 2026</li>
+          <li><strong>212</strong> Baptisms Q1 2026</li>
+          <li><strong>2</strong> Bore wells — 150+ served daily</li>
+          <li><strong>250+</strong> Children fed every day</li>
+          <li><strong>$19,800+</strong> Invested to date</li>
+        </ul>
+      </div>
+
+      <div class="col-rule"></div>
+
+      <!-- KENYA field report — NEW baptism photo with faces -->
+      <div>
+        <span class="country-tag">Kenya — Nyamira</span>
+        <img class="cphoto" src="https://drive.google.com/thumbnail?id=15waJOkU6lvZFt-Qm_2ltQyphVuJe9D0W&sz=w1200" alt="River baptism — Kenya" style="object-position:center 30%;" />
+        <p class="pcap">Believers baptized in the river — Nyamira, Kenya.</p>
+        <div class="c-hed">6 Churches. 500+ Members. A Village Transformed.</div>
+        <div class="c-sub">Est. 2021 &nbsp;·&nbsp; Led by Bishop Dr. Mike Peter Mogi</div>
+        <div class="cbody">
+          <div class="field-callout">
+            <span class="callout-big">$2,500</span>
+            <span class="callout-lbl">Water Well —<br>Village Served</span>
+          </div>
+          <p>From a shed with a handful of members, CMBC Kenya has grown to <strong>6 churches and 500+ members</strong>. Q1 2026 saw <strong>38 new members</strong> and <strong>28 baptisms</strong>. The EPPS School of Ministry has trained <strong>50+ ministers</strong>, with <strong>15 ordained</strong> for indigenous leadership and church planting across the region.</p>
+          <p>A <strong>600-seat multipurpose worship facility</strong> is actively under construction with classrooms, offices, and a full kitchen. A water well now serves the entire Nyamira village. The <strong>Eyes on Kenya Initiative</strong> delivered eyecare to <strong>700+ individuals</strong>. Weekly food distribution reaches <strong>500+ children</strong> every week.</p>
+        </div>
+        <ul class="hl">
+          <li><strong>38</strong> New members Q1 2026</li>
+          <li><strong>28</strong> Baptisms Q1 2026</li>
+          <li><strong>15</strong> Ministers ordained</li>
+          <li><strong>700+</strong> Eyes on Kenya served</li>
+          <li><strong>$29,850+</strong> Invested to date</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- WOW CARDS -->
+  <div class="wow" style="margin-top:14px;">
+    <div class="wow-head">Your Giving — Real Impact by the Numbers</div>
+    <div class="wow-cards">
+      <div class="wc"><span class="wc-emoji">💧</span><span class="wc-big">3</span><span class="wc-lbl">Villages with<br>Clean Water</span><span class="wc-sub">For the first time ever</span></div>
+      <div class="wc"><span class="wc-emoji">👁️</span><span class="wc-big">700+</span><span class="wc-lbl">Eyecare<br>Recipients</span><span class="wc-sub">Vision restored — Kenya</span></div>
+      <div class="wc"><span class="wc-emoji">🏛️</span><span class="wc-big">600</span><span class="wc-lbl">Seat Sanctuary<br>Under Construction</span><span class="wc-sub">Kenya, Nyamira</span></div>
+      <div class="wc"><span class="wc-emoji">📖</span><span class="wc-big">500+</span><span class="wc-lbl">Bibles in<br>Local Dialects</span><span class="wc-sub">Distributed across India</span></div>
+    </div>
+  </div>
+
+  <!-- FINANCIALS — gray section -->
+  <div class="fin-wrap">
+    <div class="sec-rule"><span class="sec-lbl">&nbsp;Ministry Investment — Where Your Giving Goes&nbsp;</span><span class="sec-line"></span></div>
+    <div class="fin-grid">
+      <div class="fc">
+        <div class="fc-head">India — Project Costs</div>
+        <div class="fc-body">
+          <div class="fr"><span class="fi">Two Bore Wells (clean water)</span><span class="fm">$5,000</span></div>
+          <div class="fr"><span class="fi">Baptism Pool Construction</span><span class="fm">$1,000</span></div>
+          <div class="fr"><span class="fi">Sanctuary Renovation</span><span class="fm">$3,500</span></div>
+          <div class="fr"><span class="fi">A/V &amp; Technology</span><span class="fm">$1,000</span></div>
+          <div class="fr"><span class="fi">New Construction (to date)</span><span class="fm">$7,500</span></div>
+          <div class="fr"><span class="fi">Bathrooms &amp; Toilets (6)</span><span class="fm">$1,800</span></div>
+          <div class="fr"><span class="fi">Children's Feeding Program</span><span class="fm">$150–200/wk</span></div>
+          <div class="ft"><span>India Total (to date)</span><span>$19,800+</span></div>
+        </div>
+      </div>
+      <div class="fc">
+        <div class="fc-head">Kenya — Project Costs</div>
+        <div class="fc-body">
+          <div class="fr"><span class="fi">Water Well — Nyamira Village</span><span class="fm">$2,500</span></div>
+          <div class="fr"><span class="fi">New Church Building</span><span class="fm">$25,500</span></div>
+          <div class="fr"><span class="fi">Bathroom Construction</span><span class="fm">$700</span></div>
+          <div class="fr"><span class="fi">A/V &amp; Technology</span><span class="fm">$1,150</span></div>
+          <div class="fr"><span class="fi">Children's Feeding Program</span><span class="fm">Ongoing</span></div>
+          <div class="fr"><span class="fi">Eyes on Kenya Initiative</span><span class="fm">700+ served</span></div>
+          <div class="fr"><span class="fi">EPPS Ministry Training</span><span class="fm">50+ trained</span></div>
+          <div class="ft"><span>Kenya Total (to date)</span><span>$29,850+</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="fin-total">
+    <p>All amounts USD. 100% of Foreign Missions designated gifts go directly to field work. <strong style="color:var(--mid);">Combined total: $49,650+</strong></p>
+  </div>
+
+  <!-- PHOTO ROW -->
+  <div class="photo-row" style="margin-top:0;padding-top:13px;">
+    <div>
+      <img src="https://drive.google.com/thumbnail?id=1u05DuDfAxMyJ4P3Gy--_1iIiTBhzT87z&sz=w1200" alt="Two-story facility — India" style="object-position:center 40%;" />
+      <p class="cap">Two-story facility under construction — India.</p>
+    </div>
+    <div>
+      <img src="https://drive.google.com/thumbnail?id=1VJMhTxZjfnQKQKGJUt4WG85kBwyduoED&sz=w1200" alt="600-seat sanctuary — Kenya" style="object-position:center 40%;" />
+      <p class="cap">600-seat sanctuary rising — Kenya.</p>
+    </div>
+    <div>
+      <img src="https://drive.google.com/thumbnail?id=15Xmzn7rP7dcvqyAqsoYt5FslvUMrW53i&sz=w1200" alt="Children in Kenya church" style="object-position:center 20%;" />
+      <p class="cap">Children gathered for worship — Kenya.</p>
+    </div>
+  </div>
+
+  <!-- IN THE FIELD dual photo panel -->
+  <div class="field-panel">
+    <img src="https://drive.google.com/thumbnail?id=13FwQO2HNkjiulABdjlKfNc315A6ahMum&sz=w1200" alt="Christmas celebration — India" style="object-position:center 55%;" />
+    <img src="https://drive.google.com/thumbnail?id=1GaFDXmpV-3RixgiZBIaxds_Vj2iltlnJ&sz=w1200" alt="I Love CMBC — India" style="object-position:center 20%;" />
+    <div class="field-panel-caption">
+      <span class="field-panel-txt">Left: Christmas &amp; New Year celebration in India. Right: A community member proudly wearing an "I ❤ CMBC" shirt.</span>
+      <span class="field-panel-badge">IN THE FIELD</span>
+    </div>
+  </div>
+
+  <div class="give-bar" style="margin-top:0;">
+    <span class="give-bar-txt"><strong>$49,650+ invested so far.</strong> <em>Imagine what your gift will build next.</em></span>
+    <a href="https://www.communitymbc.org/give" class="give-btn">✦ &nbsp;Give Today</a>
+  </div>
+
+</div><!-- end page 2 -->
+
+
+<!-- ══════════════════ PAGE 3 ══════════════════ -->
+<div class="page">
+
+  <div class="pg-topbar">
+    <span>Foreign Missions Newsletter — March 2026</span>
+    <span class="pg-t">Our Purpose, Vision &amp; How to Get Involved</span>
+    <span>communitymbc.org</span>
+  </div>
+
+  <!-- PURPOSE -->
+  <div class="purpose-section">
+    <div class="sec-rule"><span class="sec-lbl">&nbsp;Our Purpose for Missions&nbsp;</span><span class="sec-line"></span></div>
+    <div class="pur-2col">
+      <div>
+        <p class="pur-intro">Recognizing that the missionary mandate permeates all of Scripture, our purpose is grounded in five biblical commitments:</p>
+        <ol class="pur-list">
+          <li><div>
+            <div class="pur-title">Participate in God's Plan of Blessing for All Nations</div>
+            <div class="pur-body">Every nation, tribe, and tongue is included in God's redemptive plan. We join His work through the Gospel.</div>
+            <div class="pur-ref">Genesis 3:15; 12:3 · Psalm 47:7–9 · Romans 15:8–12</div>
+          </div></li>
+          <li><div>
+            <div class="pur-title">Bring the Saving Knowledge of Jesus to All People</div>
+            <div class="pur-body">Every person deserves the opportunity to hear and respond to the Gospel, regardless of geography or culture.</div>
+            <div class="pur-ref">John 3:16–18 · Romans 10:13–15 · Isaiah 49:6</div>
+          </div></li>
+          <li><div>
+            <div class="pur-title">Pursue True Worshipers from Every Tribe and Tongue</div>
+            <div class="pur-body">We join God in gathering worshipers from every corner of the earth — united as one body in Christ.</div>
+            <div class="pur-ref">John 4:23 · Psalm 67:3–4</div>
+          </div></li>
+          <li><div>
+            <div class="pur-title">Grow Christ's Church and Further God's Kingdom</div>
+            <div class="pur-body">We partner globally to plant, strengthen, and equip local churches for Kingdom advance.</div>
+            <div class="pur-ref">Matthew 16:18; 24:14 · Ephesians 4:11–13</div>
+          </div></li>
+          <li><div>
+            <div class="pur-title">Share Christ's Compassion — Body and Soul</div>
+            <div class="pur-body">Meeting physical needs — food, water, healthcare — is inseparable from proclaiming the Gospel.</div>
+            <div class="pur-ref">Mark 9:41 · 2 Corinthians 8:1–4 · Matthew 25:34–36</div>
+          </div></li>
+        </ol>
+      </div>
+      <div class="vsidebar">
+        <div class="vbox">
+          <div class="vbox-head">Our Vision in Action</div>
+          <p>We accomplish our purpose by:</p>
+          <ul>
+            <li>Integrating missions into our teaching</li>
+            <li>Balancing local and global giving</li>
+            <li>Sending equipped ministers to the nations</li>
+            <li>Humanitarian aid alongside the Gospel</li>
+            <li>Training leaders — EPPS School of Ministry</li>
+          </ul>
+        </div>
+        <div class="praybox">
+          <div class="praybox-head">Pray With Us — March</div>
+          <ul class="pray-list">
+            <li>Pastor Kumar Paul &amp; India churches</li>
+            <li>Pastor Peter Mogi &amp; Kenya churches</li>
+            <li>600-seat Kenya sanctuary project</li>
+            <li>250+ children fed in India daily</li>
+            <li>New believers awaiting baptism</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHOTO ROW — 3 distinct photos -->
+  <div class="photo-row" style="padding-top:14px;">
+    <div>
+      <img src="https://drive.google.com/thumbnail?id=1gWbwUzHfngeyGmKA20wVc957Lk5X2Zwz&sz=w1200" alt="India church worship" style="object-position:center 30%;" />
+      <p class="cap">Sunday worship service — India.</p>
+    </div>
+    <div>
+      <img src="https://drive.google.com/thumbnail?id=117_jVYfUcKt4KuWueINhLmYdGk3qVsAk&sz=w1200" alt="Kenya church congregation" style="object-position:center 40%;" />
+      <p class="cap">Church prayer service — Kenya.</p>
+    </div>
+    <div>
+      <img src="https://drive.google.com/thumbnail?id=1WSqYXzwt0GCwRuu5lAQNh56rCeQbnRUA&sz=w1200" alt="Gift distribution — India" style="object-position:center 30%;" />
+      <p class="cap">Christmas gift distribution — India.</p>
+    </div>
+  </div>
+
+  <!-- HOW TO PARTICIPATE — gray bg with Image 5 styled header -->
+  <div class="participate-band" style="margin-top:14px;">
+    <div class="participate-hdr">Foreign Mission Emphasis Month: How to Participate</div>
+    <div class="p3col">
+      <div class="p3item">
+        <div class="p3item-title"><span>🙏</span> Pray</div>
+        <p>Commit to daily prayer for our pastors, congregations, and communities in India and Kenya. Pray for new believers, growing leaders, and ongoing provision for construction and feeding programs.</p>
+      </div>
+      <div class="p3item">
+        <div class="p3item-title"><span>🧡</span> Give</div>
+        <p>Special offerings during March support the 600-seat Kenya sanctuary, two-story India facility, feeding programs, and water wells. Every gift makes an eternal difference — give at communitymbc.org/give.</p>
+      </div>
+      <div class="p3item">
+        <div class="p3item-title"><span>✈️</span> Go</div>
+        <p>Are you called to go? Consider joining an upcoming mission trip to India or Kenya. Contact our Foreign Missions office to learn how you can serve firsthand alongside our partners on the field.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT IS FMEM — warm/cream bg -->
+  <div class="fmem">
+    <div class="fmem-hed">What Is Foreign Mission Emphasis Month?</div>
+    <ul class="fmem-list">
+      <li><div><strong>Awareness &amp; Education</strong> — Learn about our mission partners in India and Kenya</div></li>
+      <li><div><strong>Prayer Support</strong> — Pray specifically for our pastors, churches, and communities abroad</div></li>
+      <li><div><strong>Financial Giving</strong> — Give toward ongoing construction, food distribution, and ministry needs</div></li>
+      <li><div><strong>Connecting with Missionaries</strong> — Hear firsthand testimonies from the field</div></li>
+      <li><div><strong>Mobilization</strong> — Consider how you are called to go, pray, or give</div></li>
+    </ul>
+  </div>
+
+  <!-- BIG GIVE CTA -->
+  <div class="give-cta">
+    <div class="cta-eye">✦ &nbsp;Be a Part of the Movement &nbsp;✦</div>
+    <div class="cta-hed">Your Gift Builds <em>Churches.</em> Digs <em>Wells.</em> Feeds <em>Children.</em></div>
+    <p class="cta-sub">Over <strong>$49,650</strong> has already been invested in India and Kenya through the generosity of this congregation. Every gift — of any size — sends a message: CMBC stands with the nations.</p>
+    <div class="cta-single-row">
+      <span class="cta-row-txt"><strong>Be a part of the movement.</strong> Your gift changes lives — today and for eternity.</span>
+      <a href="https://www.communitymbc.org/give" class="cta-row-btn">✦ &nbsp;Give Online Now</a>
+    </div>
+    <div class="amt-row">
+      <div class="amt">$25<span>Feeds 5 children 1 week</span></div>
+      <div class="amt">$50<span>School supplies for 10</span></div>
+      <div class="amt">$100<span>Toward a water well</span></div>
+      <div class="amt">$250<span>A/V equipment fund</span></div>
+      <div class="amt">$500<span>Sponsors a minister</span></div>
+      <div class="amt">$1,000<span>Funds a month of ops</span></div>
+    </div>
+    <p class="cta-note">Designate: "Foreign Missions" &nbsp;·&nbsp; All gifts tax-deductible &nbsp;·&nbsp; 100% goes to the field</p>
+  </div>
+
+  <!-- SIGNUP — dark burg — Formspree powered -->
+  <div class="signup-wrap" id="signup-form">
+    <div class="signup-header">
+      <h4>Stay Connected to the Mission</h4>
+      <p>Join our newsletter and stay informed about our global work.</p>
+    </div>
+    <div class="signup-form-area">
+      <form id="missions-form" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="New Signup — CMBC Foreign Missions Newsletter">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" style="display:none">
+
+        <div class="su-row2">
+          <input type="text"  name="name"  id="su-name"  placeholder="Your Full Name" autocomplete="name" required />
+          <input type="email" name="email" id="su-email" placeholder="Your Email Address" autocomplete="email" required />
+          <input type="tel"   name="phone" id="su-phone" placeholder="Phone (optional)" />
+        </div>
+        <div class="su-checks">
+          <label class="su-check"><input type="checkbox" name="interests" value="Newsletter Updates" checked /> <span>📧 Newsletter Updates</span></label>
+          <label class="su-check"><input type="checkbox" name="interests" value="Volunteer/Serve" /> <span>🤝 Volunteer/Serve</span></label>
+          <label class="su-check"><input type="checkbox" name="interests" value="Join a Mission Trip" /> <span>✈️ Join a Mission Trip</span></label>
+          <label class="su-check"><input type="checkbox" name="interests" value="Giving Opportunities" /> <span>💛 Giving Opportunities</span></label>
+        </div>
+        <div class="su-bottom">
+          <button type="submit" id="su-btn">✦ &nbsp;Submit — Stay Connected</button>
+          <p class="su-priv" id="su-status">Responses sent directly to Shanta Stevens · Foreign Missions Team · communitymbc.org</p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- CONTACT — gray bg -->
+  <div class="contact-row">
+    <div>
+      <div class="cc-name">Rev. Dr. Sherwyn Ramey</div>
+      <div class="cc-role">Director, Foreign Missions</div>
+      <div class="cc-detail">✉ <a href="mailto:sherwyn.ramey@communitymbc.org">sherwyn.ramey@communitymbc.org</a></div>
+      <div class="cc-detail">🌐 <a href="https://www.communitymbc.org/foreign_missions">communitymbc.org/foreign_missions</a></div>
+    </div>
+    <div class="col-rule"></div>
+    <div>
+      <div class="cc-name">Shanta Stevens</div>
+      <div class="cc-role">Ministry Assistant, Foreign Missions</div>
+      <div class="cc-detail">✉ <a href="mailto:shanta.stevens@communitymbc.org">shanta.stevens@communitymbc.org</a></div>
+      <div class="cc-detail">🌐 <a href="https://www.communitymbc.org/foreign_missions">communitymbc.org/foreign_missions</a></div>
+    </div>
+  </div>
+
+  <!-- FOOTER — guaranteed single line -->
+  <div class="footer">
+    <span class="f-church">Community Missionary Baptist Church</span>
+    <div class="f-links">
+      <a href="https://www.communitymbc.org">COMMUNITYMBC.ORG</a>
+      <a href="https://www.communitymbc.org/give">GIVE ONLINE</a>
+      <a href="https://www.communitymbc.org/foreign_missions">FOREIGN MISSIONS</a>
+    </div>
+  </div>
+
+</div><!-- end page 3 -->
+
+<script>
+(() => {
+  const form = document.getElementById('missions-form');
+  if (!form) return;
+  const btn    = document.getElementById('su-btn');
+  const status = document.getElementById('su-status');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name  = document.getElementById('su-name').value.trim();
+    const email = document.getElementById('su-email').value.trim();
+    if (!name || !email) {
+      status.textContent = '⚠  Please enter your name and email before submitting.';
+      status.style.color = '#ffcc44';
+      return;
+    }
+
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+    status.textContent = '';
+
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/CMBCForeignMissions@gmail.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+      if (!res.ok) throw new Error('failed');
+
+      btn.textContent = '✔  You\'re connected — thank you!';
+      btn.style.background = '#2a7a2a';
+      status.textContent = 'Your information has been sent to the Foreign Missions team. We\'ll be in touch soon!';
+      status.style.color = 'rgba(255,255,255,0.8)';
+      form.reset();
+
+    } catch (err) {
+      status.textContent = 'Something went wrong — please try again or email shanta.stevens@communitymbc.org';
+      status.style.color = '#ffcc44';
+      if (btn) { btn.disabled = false; btn.textContent = '✦  Submit — Stay Connected'; }
+    }
+  });
+})();
+</script>
